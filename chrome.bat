@@ -54,7 +54,7 @@ echo Full path: %~D0%fullPath%
 ::Then copy and paste one of these lines "reg add "HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallWhitelist" /v nextnumberinsequence /t REG_SZ /d extensionid /f"
 ::Replace values nextnumberinsequence and extension ID with what they need.
 ::(Optional) Use :: above the line for whitelisting and write the Extension name afterwards.
-echo Making the registry folder structure
+echo Modifying registry components
 reg delete "HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallBlacklist" /va /f
 
 :: Hangouts
@@ -72,4 +72,5 @@ reg add "HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallWhitelist" /v 4 /t
 :: CRX Viewer
 reg add "HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallWhitelist" /v 5 /t REG_SZ /d jifpbeccnghkjeaalbbjmodiffmgedin /f
 
+echo Completed :)
 pause
