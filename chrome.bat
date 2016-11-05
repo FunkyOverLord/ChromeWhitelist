@@ -49,9 +49,11 @@ echo Full path: %~D0%fullPath%
 :--------------------------------------    
 
 ::Now begins the messy registry crap
-::To whitelist an extension, go into extensions in chrome and enable developer mode, 
-::then copy the ID and add line below and change the long value, and make sure the number 1 or 2, 
-::or whatever is changed to the newest number.
+::To whitelist an extension, go into extensions in Chrome and enable Developer Mode.
+::Copy the ID of the extension you want after initially running this script (it will be next to the extension)
+::Then copy and paste one of these lines "reg add "HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallWhitelist" /v nextnumberinsequence /t REG_SZ /d extensionid /f"
+::Replace values nextnumberinsequence and extension ID with what they need.
+::(Optional) Use :: above the line for whitelisting and write the Extension name afterwards.
 echo Making the registry folder structure
 reg delete "HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallBlacklist" /va /f
 
