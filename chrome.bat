@@ -47,6 +47,17 @@ for %%a in ("%myPath:\=" "%") do (
 popd
 echo Full path: %~D0%fullPath%
 :--------------------------------------    
+:MENU
+CLS
+ECHO...............................................................................
+ECHO 1 - Remove all restricions (temporary)
+ECHO 2 - Allow particular extensions (permanent, edit file to see which extensions)
+ECHO...............................................................................
+
+SET /P M=Type 1 or 2, and 3 to exit, then hit ENTER:
+IF %M%==1 GOTO TEMP
+IF %M%==2 GOTO PERM
+IF %M%==3 GOTO EOF
 
 ::Now begins the messy registry crap
 ::To whitelist an extension, go into extensions in Chrome and enable Developer Mode.
@@ -54,9 +65,12 @@ echo Full path: %~D0%fullPath%
 ::Then copy and paste one of these lines "reg add "HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallWhitelist" /v nextnumberinsequence /t REG_SZ /d extensionid /f"
 ::Replace values nextnumberinsequence and extension ID with what they need.
 ::(Optional) Use :: above the line for whitelisting and write the Extension name afterwards.
-echo Modifying registry components
-reg delete "HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallBlacklist" /va /f
 
+:TEMP
+reg delete "HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallBlacklist" /va /f
+GOTO MENU
+
+:PERM
 :: Hangouts
 reg add "HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallWhitelist" /v 1 /t REG_SZ /d nckgahadagoaajjgafhacjanaoiihapd /f
 
@@ -73,4 +87,4 @@ reg add "HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallWhitelist" /v 4 /t
 reg add "HKLM\SOFTWARE\Policies\Google\Chrome\ExtensionInstallWhitelist" /v 5 /t REG_SZ /d jifpbeccnghkjeaalbbjmodiffmgedin /f
 
 echo Completed :)
-pause
+GOTO MENU
