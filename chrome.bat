@@ -53,6 +53,7 @@ ECHO............................................................................
 ECHO 1 - Remove all restricions (temporary)
 ECHO 2 - Allow particular extensions (permanent, edit file to see which extensions)
 ECHO...............................................................................
+ECHO.
 
 SET /P M=Type 1 or 2, and 3 to exit, then hit ENTER:
 IF %M%==1 GOTO TEMP
